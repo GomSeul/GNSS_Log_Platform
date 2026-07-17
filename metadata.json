@@ -1,0 +1,6 @@
+{
+  "name": "GRTIP: 위성항법 수신기 시험 로그 지능형 분석 플랫폼",
+  "description": "위성항법 수신기 시험 로그를 통합 수집, 표준화 및 정밀 성능 지표 분석하고 이상 패턴 탐지 및 AI 기반 디버깅 리포트를 생성하는 지능형 모니터링 플랫폼입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

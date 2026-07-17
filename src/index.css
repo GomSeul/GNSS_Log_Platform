@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+/* Print CSS formatting rules to ensure aerospace reports break nicely */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  #grtip-main-nav, #grtip-main-header, .print\:hidden {
+    display: none !important;
+  }
+  #print-aerospace-report {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .page-break-before {
+    page-break-before: always;
+  }
+}
+
