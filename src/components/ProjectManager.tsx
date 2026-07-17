@@ -117,15 +117,15 @@ export default function ProjectManager({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6" id="grtip-project-manager">
       {/* 1. Projects Sidebar (1/4 Width) */}
-      <div className="lg:col-span-1 bg-white rounded-xl shadow-xs border border-slate-100 p-5 flex flex-col h-[calc(100vh-140px)] min-h-[500px]">
-        <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+      <div className="lg:col-span-1 bg-white rounded-xl shadow-xs border border-slate-200 p-5 flex flex-col h-[calc(100vh-140px)] min-h-[500px]">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
           <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
-            <FolderOpen className="h-5 w-5 text-indigo-600" />
+            <FolderOpen className="h-5 w-5 text-hanwha-orange" />
             <span>시험 프로젝트 목록</span>
           </div>
           <button
             onClick={() => setShowNewProjModal(true)}
-            className="p-1.5 hover:bg-slate-50 text-indigo-600 rounded-lg border border-slate-100 transition-all flex items-center justify-center"
+            className="p-1.5 hover:bg-slate-50 text-hanwha-orange rounded-lg border border-slate-200 transition-all flex items-center justify-center cursor-pointer"
             title="새 프로젝트 생성"
             id="btn-create-project"
           >
@@ -146,8 +146,8 @@ export default function ProjectManager({
                 id={`project-item-${proj.id}`}
                 className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                   isSelected
-                    ? "bg-indigo-50/75 border-indigo-200 shadow-2xs"
-                    : "border-slate-100 hover:border-slate-200 hover:bg-slate-50/50"
+                    ? "bg-hanwha-orange-light border-hanwha-orange shadow-2xs"
+                    : "border-slate-200 hover:border-hanwha-orange/40 hover:bg-slate-50"
                 }`}
               >
                 <div className="font-semibold text-sm text-slate-800 line-clamp-1">{proj.name}</div>
@@ -173,15 +173,15 @@ export default function ProjectManager({
         {selectedProject ? (
           <>
             {/* Project Cover Block */}
-            <div className="bg-gradient-to-r from-slate-900 to-indigo-950 text-white rounded-xl p-6 shadow-sm border border-slate-800 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-hanwha-black to-slate-900 text-white rounded-xl p-6 shadow-sm border border-slate-800 relative overflow-hidden">
               <div className="relative z-10">
-                <div className="text-xs font-mono tracking-widest text-indigo-300 uppercase font-semibold">Active Project Workstation</div>
-                <h1 className="text-2xl font-bold mt-1 tracking-tight text-slate-100">{selectedProject.name}</h1>
+                <div className="text-xs font-mono tracking-widest text-hanwha-orange uppercase font-bold">Active Project Workstation</div>
+                <h1 className="text-2xl font-bold mt-1 tracking-tight text-white">{selectedProject.name}</h1>
                 <p className="text-sm text-slate-300 mt-2 max-w-3xl leading-relaxed">{selectedProject.description}</p>
                 
                 <div className="flex flex-wrap gap-4 mt-5 pt-4 border-t border-slate-800 text-xs text-slate-300">
                   <div className="flex items-center gap-1.5 font-mono">
-                    <Calendar className="h-3.5 w-3.5 text-indigo-400" />
+                    <Calendar className="h-3.5 w-3.5 text-hanwha-orange" />
                     <span>생성일: {new Date(selectedProject.createdAt).toLocaleString()}</span>
                   </div>
                   <div className="flex items-center gap-1.5 font-mono">
@@ -190,19 +190,19 @@ export default function ProjectManager({
                   </div>
                 </div>
               </div>
-              <div className="absolute top-0 right-0 h-full w-1/3 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-0 right-0 h-full w-1/3 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-hanwha-orange/10 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Test Trials Section */}
-            <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-100">
+            <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-200">
                 <div>
                   <h3 className="font-bold text-slate-800 text-base">수신기 시험 로그 회차 목록</h3>
                   <p className="text-xs text-slate-400 mt-0.5">등록된 개별 수신기 시험 데이터 및 성능 평가 리스트</p>
                 </div>
                 <button
                   onClick={() => setShowNewTrialModal(true)}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-1.5 text-xs font-semibold rounded-lg shadow-2xs transition-all flex items-center justify-center gap-1.5 self-start"
+                  className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-3.5 py-1.5 text-xs font-semibold rounded-lg shadow-2xs transition-all flex items-center justify-center gap-1.5 self-start cursor-pointer"
                   id="btn-register-trial"
                 >
                   <Plus className="h-4 w-4" />
@@ -211,7 +211,7 @@ export default function ProjectManager({
               </div>
 
               {/* Filters Panel */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 bg-slate-50 p-3 rounded-lg border border-slate-100">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 bg-slate-50 p-3 rounded-lg border border-slate-200">
                 {/* Search query */}
                 <div className="relative">
                   <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-400" />
@@ -220,7 +220,7 @@ export default function ProjectManager({
                     placeholder="시험명, 시나리오, SW버전 검색..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-white pl-8 pr-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 text-slate-700"
+                    className="w-full bg-white pl-8 pr-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange text-slate-700"
                   />
                 </div>
                 {/* SW Version Filter */}
@@ -228,7 +228,7 @@ export default function ProjectManager({
                   <select
                     value={swFilter}
                     onChange={(e) => setSwFilter(e.target.value)}
-                    className="w-full bg-white px-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 text-slate-700"
+                    className="w-full bg-white px-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange text-slate-700"
                   >
                     <option value="">모든 SW 버전</option>
                     {swVersions.map((v) => (
@@ -243,7 +243,7 @@ export default function ProjectManager({
                   <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="w-full bg-white px-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 text-slate-700"
+                    className="w-full bg-white px-3 py-1.5 text-xs rounded-md border border-slate-200 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange text-slate-700"
                   >
                     <option value="">모든 판정 결과</option>
                     <option value="passed">충족 (Passed)</option>
@@ -257,7 +257,7 @@ export default function ProjectManager({
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
-                    <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 font-medium">
+                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium">
                       <th className="p-3">시험명 / 식별 정보</th>
                       <th className="p-3">SW / HW 버전</th>
                       <th className="p-3">수신 시나리오</th>
@@ -272,8 +272,8 @@ export default function ProjectManager({
                       return (
                         <tr
                           key={trial.id}
-                          className={`border-b border-slate-100 hover:bg-slate-50/50 transition-all ${
-                            isTrialSelected ? "bg-indigo-50/30" : ""
+                          className={`border-b border-slate-200 hover:bg-slate-50/50 transition-all ${
+                            isTrialSelected ? "bg-hanwha-orange/5" : ""
                           }`}
                           id={`trial-row-${trial.id}`}
                         >
@@ -286,7 +286,7 @@ export default function ProjectManager({
                               )}
                               <span
                                 onClick={() => onSelectTrial(trial)}
-                                className="font-semibold text-slate-800 hover:text-indigo-600 cursor-pointer line-clamp-1 text-sm"
+                                className="font-semibold text-slate-800 hover:text-hanwha-orange cursor-pointer line-clamp-1 text-sm"
                               >
                                 {trial.name}
                               </span>
@@ -324,17 +324,17 @@ export default function ProjectManager({
                             <div className="flex items-center justify-end gap-2">
                               <button
                                 onClick={() => onSelectTrial(trial)}
-                                className={`px-2.5 py-1 text-xs rounded-md transition-all font-semibold ${
+                                className={`px-2.5 py-1 text-xs rounded-md transition-all font-semibold cursor-pointer ${
                                   isTrialSelected
-                                    ? "bg-indigo-600 text-white"
-                                    : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                                    ? "bg-hanwha-black text-white"
+                                    : "bg-slate-100 hover:bg-slate-250 text-slate-700"
                                 }`}
                               >
                                 분석 진입
                               </button>
                               <button
                                 onClick={() => onDeleteTrial(trial.id)}
-                                className="p-1 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded"
+                                className="p-1 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded cursor-pointer"
                                 title="시험 삭제"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
@@ -384,7 +384,7 @@ export default function ProjectManager({
                   placeholder="예: 위성 탑재체 GNSS 수신기 v3.0 평가"
                   value={newProjName}
                   onChange={(e) => setNewProjName(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                 />
               </div>
               <div>
@@ -394,7 +394,7 @@ export default function ProjectManager({
                   placeholder="프로젝트 목표, 검증할 SW/HW 특징, 적용할 시뮬레이션 환경 등을 기술하십시오."
                   value={newProjDesc}
                   onChange={(e) => setNewProjDesc(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                 />
               </div>
 
@@ -402,13 +402,13 @@ export default function ProjectManager({
                 <button
                   type="button"
                   onClick={() => setShowNewProjModal(false)}
-                  className="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:bg-slate-100 rounded-lg"
+                  className="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:bg-slate-100 rounded-lg cursor-pointer"
                 >
                   취소
                 </button>
                 <button
                   type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 text-xs font-semibold rounded-lg shadow-sm"
+                  className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-4 py-1.5 text-xs font-semibold rounded-lg shadow-sm cursor-pointer"
                 >
                   생성 완료
                 </button>
@@ -434,7 +434,7 @@ export default function ProjectManager({
                   placeholder="예: SW v2.4.2 베타-1 정밀 비행 궤적 모사 시험"
                   value={newTrialName}
                   onChange={(e) => setNewTrialName(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                 />
               </div>
 
@@ -447,7 +447,7 @@ export default function ProjectManager({
                     placeholder="SW_V2.4.2_BETA"
                     value={newTrialSw}
                     onChange={(e) => setNewTrialSw(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                   />
                 </div>
                 <div>
@@ -457,7 +457,7 @@ export default function ProjectManager({
                     placeholder="HW_REV_C_FPGA_V1.1"
                     value={newTrialHw}
                     onChange={(e) => setNewTrialHw(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                   />
                 </div>
               </div>
@@ -470,7 +470,7 @@ export default function ProjectManager({
                     placeholder="SIM_DYNAMIC_CUSTOM"
                     value={newTrialScenario}
                     onChange={(e) => setNewTrialScenario(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                   />
                 </div>
                 <div>
@@ -480,7 +480,7 @@ export default function ProjectManager({
                     placeholder="예: 김민혁 선임"
                     value={newTrialInspector}
                     onChange={(e) => setNewTrialInspector(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                   />
                 </div>
               </div>
@@ -492,7 +492,7 @@ export default function ProjectManager({
                   placeholder="K-Sat GNSS Core Receiver Block-II #1"
                   value={newTrialReceiver}
                   onChange={(e) => setNewTrialReceiver(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                 />
               </div>
 
@@ -503,17 +503,17 @@ export default function ProjectManager({
                   placeholder="시험 중 발생한 이벤트나 수신 장비 작동 상태 메모..."
                   value={newTrialNotes}
                   onChange={(e) => setNewTrialNotes(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 focus:bg-white"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange focus:bg-white"
                 />
               </div>
 
-              <div className="flex items-center gap-2 py-1 bg-indigo-50/50 p-3 rounded-lg border border-indigo-100/50">
+              <div className="flex items-center gap-2 py-1 bg-hanwha-orange/5 p-3 rounded-lg border border-hanwha-orange/20">
                 <input
                   type="checkbox"
                   id="chk-baseline"
                   checked={newTrialIsBaseline}
                   onChange={(e) => setNewTrialIsBaseline(e.target.checked)}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded"
+                  className="h-4 w-4 text-hanwha-orange focus:ring-hanwha-orange border-slate-300 rounded"
                 />
                 <label htmlFor="chk-baseline" className="text-slate-700 text-xs font-semibold select-none cursor-pointer">
                   이 시험 회차를 프로젝트의 기준 시험(Baseline)으로 지정합니다.
@@ -524,13 +524,13 @@ export default function ProjectManager({
                 <button
                   type="button"
                   onClick={() => setShowNewTrialModal(false)}
-                  className="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:bg-slate-100 rounded-lg"
+                  className="px-3 py-1.5 text-xs font-semibold text-slate-500 hover:bg-slate-100 rounded-lg cursor-pointer"
                 >
                   취소
                 </button>
                 <button
                   type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 text-xs font-semibold rounded-lg shadow-sm"
+                  className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-4 py-1.5 text-xs font-semibold rounded-lg shadow-sm cursor-pointer"
                 >
                   시험 등록 완료
                 </button>

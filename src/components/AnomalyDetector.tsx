@@ -92,9 +92,9 @@ export default function AnomalyDetector({
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" id="grtip-anomaly-detector">
       {/* 1. Rule Configuration Sidebar (1/3 width) */}
       <div className="space-y-6">
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-          <h3 className="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2 pb-2 border-b border-slate-50">
-            <Settings className="h-4 w-4 text-indigo-600" />
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+          <h3 className="font-bold text-slate-800 text-sm mb-1.5 flex items-center gap-2 pb-2 border-b border-slate-100">
+            <Settings className="h-4 w-4 text-hanwha-orange" />
             <span>이상탐지 진단 알고리즘 임계값 설정</span>
           </h3>
           <p className="text-[10px] text-slate-400 leading-relaxed mb-4">
@@ -169,7 +169,7 @@ export default function AnomalyDetector({
 
             <button
               onClick={handleSaveConfig}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 text-xs font-semibold rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all mt-3"
+              className="w-full bg-hanwha-orange hover:bg-hanwha-orange-dark text-white py-2 text-xs font-semibold rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all mt-3 cursor-pointer"
             >
               <Save className="h-3.5 w-3.5" />
               임계값 적용 및 재검출
@@ -181,12 +181,12 @@ export default function AnomalyDetector({
       {/* 2. Interactive Anomaly Timeline & Review Panel (2/3 width) */}
       <div className="lg:col-span-2 space-y-6">
         {/* Anomaly Timeline Summary Row */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
           <h3 className="font-bold text-slate-800 text-sm mb-1.5">이상 이벤트 검출 타임라인</h3>
           <p className="text-[10px] text-slate-400 mb-4">60초의 연동 시험 시간축에서 발생한 이상 물리적 징후의 시점 분포</p>
 
           {/* Graphical timeline */}
-          <div className="relative h-14 bg-slate-50 border border-slate-100 rounded-xl mb-4 p-2 flex items-center">
+          <div className="relative h-14 bg-slate-50 border border-slate-200 rounded-xl mb-4 p-2 flex items-center">
             {/* Timeline base line */}
             <div className="absolute left-4 right-4 h-0.5 bg-slate-200" />
             
@@ -200,9 +200,9 @@ export default function AnomalyDetector({
                   key={evt.id}
                   onClick={() => setSelectedEventId(evt.id)}
                   style={{ left: `calc(${positionPercent}% - 8px)` }}
-                  className={`absolute h-4.5 w-4.5 rounded-full border-2 flex items-center justify-center transition-all ${
+                  className={`absolute h-4.5 w-4.5 rounded-full border-2 flex items-center justify-center transition-all cursor-pointer ${
                     isSelected
-                      ? "bg-indigo-600 border-white ring-2 ring-indigo-500 scale-125 z-10 shadow-sm"
+                      ? "bg-hanwha-orange border-white ring-2 ring-hanwha-orange scale-125 z-10 shadow-sm"
                       : evt.severity === "critical"
                       ? "bg-rose-500 border-white hover:scale-110"
                       : evt.severity === "error"
@@ -229,7 +229,7 @@ export default function AnomalyDetector({
                   onClick={() => setSelectedEventId(evt.id)}
                   className={`p-3 rounded-lg border cursor-pointer transition-all flex items-center justify-between gap-3 ${
                     isSelected
-                      ? "bg-indigo-50/40 border-indigo-200 shadow-2xs"
+                      ? "bg-hanwha-orange/5 border-hanwha-orange/30 shadow-2xs"
                       : "border-slate-100 hover:border-slate-200 hover:bg-slate-50/50"
                   }`}
                   id={`anomaly-item-${evt.id}`}
@@ -270,8 +270,8 @@ export default function AnomalyDetector({
 
         {/* Selected Anomaly Diagnostics (Context Window Zoom & Logs) */}
         {selectedEvent && (
-          <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5 space-y-6">
-            <div className="flex items-start justify-between border-b border-slate-50 pb-3">
+          <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5 space-y-6">
+            <div className="flex items-start justify-between border-b border-slate-100 pb-3">
               <div>
                 <span className="bg-slate-100 text-slate-500 font-mono text-[10px] px-1.5 py-0.5 rounded font-bold">
                   EVENT {selectedEvent.id.toUpperCase()}
@@ -286,26 +286,26 @@ export default function AnomalyDetector({
             {/* Context zoom graph */}
             <div>
               <h5 className="text-[11px] font-bold text-slate-600 mb-2">이상 발생 전후 ±3초 정밀 Context Window 지표 분석</h5>
-              <div className="h-44 bg-slate-50 rounded-lg p-2 border border-slate-100">
+              <div className="h-44 bg-slate-50 rounded-lg p-2 border border-slate-200">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={selectedEvent.contextData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
                     <defs>
                       <linearGradient id="colorMetric" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.2} />
-                        <stop offset="95%" stopColor="#4f46e5" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#f37321" stopOpacity={0.2} />
+                        <stop offset="95%" stopColor="#f37321" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis dataKey="timeSec" type="number" domain={["auto", "auto"]} stroke="#94a3b8" fontSize={9} tickFormatter={(v) => `${v}s`} />
                     <YAxis stroke="#94a3b8" fontSize={9} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: "#1e293b", borderRadius: "6px", border: "none", color: "#f8fafc", fontSize: "10px", fontFamily: "monospace" }}
+                      contentStyle={{ backgroundColor: "#111111", borderRadius: "6px", border: "none", color: "#f8fafc", fontSize: "10px", fontFamily: "monospace" }}
                     />
                     <ReferenceLine x={selectedEvent.timestamp} stroke="#ef4444" strokeDasharray="3 3" label={{ value: "이상 탐지 시점", fill: "#ef4444", fontSize: 8, position: "top" }} />
                     
                     {/* Render different metric depending on event type */}
                     {selectedEvent.metricType === "cn0" && (
-                      <Area name="C/N0" type="monotone" dataKey="cn0" stroke="#4f46e5" fillOpacity={1} fill="url(#colorMetric)" />
+                      <Area name="C/N0" type="monotone" dataKey="cn0" stroke="#f37321" fillOpacity={1} fill="url(#colorMetric)" />
                     )}
                     {selectedEvent.metricType === "doppler" && (
                       <Area name="Doppler Err" type="monotone" dataKey="dopplerErr" stroke="#eab308" fillOpacity={1} fill="url(#colorMetric)" />
@@ -349,10 +349,10 @@ export default function AnomalyDetector({
             </div>
 
             {/* Review Status modification form */}
-            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-end">
+            <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-end">
               <div className="flex-1 space-y-3 w-full">
                 <div className="flex items-center gap-1.5">
-                  <CheckSquare className="h-4 w-4 text-indigo-600" />
+                  <CheckSquare className="h-4 w-4 text-hanwha-orange" />
                   <span className="text-[11px] font-bold text-slate-700">검토 현황 판정 및 피드백 기록</span>
                 </div>
                 
@@ -362,7 +362,7 @@ export default function AnomalyDetector({
                     <select
                       value={reviewStatus}
                       onChange={(e) => setReviewStatus(e.target.value as AnomalyEvent["status"])}
-                      className="w-full bg-white border border-slate-200 rounded px-2 py-1.5 text-xs text-slate-700 focus:outline-hidden"
+                      className="w-full bg-white border border-slate-200 rounded px-2 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange"
                     >
                       <option value="unreviewed">미검토</option>
                       <option value="investigating">분석 중</option>
@@ -378,7 +378,7 @@ export default function AnomalyDetector({
                       placeholder="예: 기만 시나리오 시작에 따른 의도적 이탈"
                       value={reviewNotes}
                       onChange={(e) => setReviewNotes(e.target.value)}
-                      className="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:bg-white"
+                      className="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:bg-white focus:ring-1 focus:ring-hanwha-orange"
                     />
                   </div>
                 </div>
@@ -386,7 +386,7 @@ export default function AnomalyDetector({
 
               <button
                 onClick={handleUpdateStatus}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-2xs flex items-center justify-center gap-1 shrink-0 w-full md:w-auto"
+                className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-4 py-2 text-xs font-semibold rounded-lg shadow-2xs flex items-center justify-center gap-1 shrink-0 w-full md:w-auto cursor-pointer"
               >
                 <MessageSquare className="h-3.5 w-3.5" />
                 피드백 보존

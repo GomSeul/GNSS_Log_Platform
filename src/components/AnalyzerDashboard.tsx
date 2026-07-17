@@ -44,10 +44,10 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
               <button
                 key={prn}
                 onClick={() => setSelectedPrn(prn)}
-                className={`px-3 py-1 text-xs font-semibold rounded-md transition-all ${
+                className={`px-3 py-1 text-xs font-semibold rounded-md transition-all border cursor-pointer ${
                   selectedPrn === prn
-                    ? "bg-indigo-600 text-white shadow-xs"
-                    : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                    ? "bg-hanwha-black text-white border-hanwha-black shadow-xs"
+                    : "bg-slate-100 border-transparent hover:bg-hanwha-orange-light hover:text-hanwha-orange text-slate-700"
                 }`}
                 id={`btn-prn-${prn}`}
               >
@@ -67,7 +67,7 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
             step="1"
             value={timeRange[1]}
             onChange={(e) => setTimeRange([0, parseFloat(e.target.value)])}
-            className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+            className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-hanwha-orange"
           />
         </div>
       </div>
@@ -75,10 +75,10 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
       {/* 2. GNSS Performance Metrics Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Tracker C/N0 Card */}
-        <div className="bg-white rounded-xl border border-slate-100 p-4 shadow-2xs relative overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs relative overflow-hidden">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-400">평균 신호 세기 (C/N₀)</span>
-            <Radio className="h-4 w-4 text-indigo-500" />
+            <Radio className="h-4 w-4 text-hanwha-orange" />
           </div>
           <div className="mt-2.5 flex items-baseline gap-1.5">
             <span className="text-2xl font-bold tracking-tight text-slate-800 font-mono">{stats.meanCn0.toFixed(1)}</span>
@@ -146,8 +146,8 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
       {/* 3. Linked Graph Workspace (2x2 Grid) */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Card 1: C/N0 Time Series */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-          <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-2">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+          <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-2">
             <h4 className="text-xs font-bold text-slate-800">반송파 대 잡음비 (C/N₀) 시계열 지표</h4>
             <span className="text-[10px] text-slate-400 font-mono">단위: dB-Hz</span>
           </div>
@@ -158,21 +158,21 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
                 <XAxis dataKey="timeSec" type="number" domain={["auto", "auto"]} stroke="#94a3b8" fontSize={10} tickFormatter={(v) => `${v}s`} />
                 <YAxis domain={[0, 55]} stroke="#94a3b8" fontSize={10} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#1e293b", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
+                  contentStyle={{ backgroundColor: "#111111", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
                   labelFormatter={(v) => `Time: ${v}s`}
                 />
                 <Legend wrapperStyle={{ fontSize: "10px" }} />
                 {/* 30 dB-Hz Minimum Limit line */}
                 <ReferenceLine y={30} stroke="#f43f5e" strokeDasharray="3 3" label={{ value: "추적 한계선 (30 dB-Hz)", fill: "#f43f5e", fontSize: 9, position: "top" }} />
-                <Line name="C/N₀ (Measured)" type="monotone" dataKey="cn0" stroke="#4f46e5" strokeWidth={1.8} dot={false} activeDot={{ r: 4 }} />
+                <Line name="C/N₀ (Measured)" type="monotone" dataKey="cn0" stroke="#f37321" strokeWidth={1.8} dot={false} activeDot={{ r: 4 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Card 2: Doppler Error */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-          <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-2">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+          <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-2">
             <h4 className="text-xs font-bold text-slate-800">측정 도플러 잔차 오차 (Doppler Shift Error)</h4>
             <span className="text-[10px] text-slate-400 font-mono">단위: Hz</span>
           </div>
@@ -183,7 +183,7 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
                 <XAxis dataKey="timeSec" type="number" domain={["auto", "auto"]} stroke="#94a3b8" fontSize={10} tickFormatter={(v) => `${v}s`} />
                 <YAxis stroke="#94a3b8" fontSize={10} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#1e293b", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
+                  contentStyle={{ backgroundColor: "#111111", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
                   labelFormatter={(v) => `Time: ${v}s`}
                 />
                 <Legend wrapperStyle={{ fontSize: "10px" }} />
@@ -194,8 +194,8 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
         </div>
 
         {/* Card 3: PLL Loop Discriminator */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-          <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-2">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+          <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-2">
             <h4 className="text-xs font-bold text-slate-800">반송파 추적루프(PLL) 판별기 출력 (Discriminator Output)</h4>
             <span className="text-[10px] text-slate-400 font-mono">단위: chips / radians</span>
           </div>
@@ -206,7 +206,7 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
                 <XAxis dataKey="timeSec" type="number" domain={["auto", "auto"]} stroke="#94a3b8" fontSize={10} tickFormatter={(v) => `${v}s`} />
                 <YAxis domain={[0, 0.2]} stroke="#94a3b8" fontSize={10} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#1e293b", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
+                  contentStyle={{ backgroundColor: "#111111", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
                   labelFormatter={(v) => `Time: ${v}s`}
                 />
                 <Legend wrapperStyle={{ fontSize: "10px" }} />
@@ -218,8 +218,8 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
         </div>
 
         {/* Card 4: Navigation Domain 3D Position Error */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-          <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-2">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+          <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-2">
             <h4 className="text-xs font-bold text-slate-800">항법 연산 위치해 누적 오차 (3D Position Error)</h4>
             <span className="text-[10px] text-slate-400 font-mono">단위: m</span>
           </div>
@@ -230,7 +230,7 @@ export default function AnalyzerDashboard({ logs, stats }: AnalyzerDashboardProp
                 <XAxis dataKey="timeSec" type="number" domain={["auto", "auto"]} stroke="#94a3b8" fontSize={10} tickFormatter={(v) => `${v}s`} />
                 <YAxis stroke="#94a3b8" fontSize={10} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#1e293b", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
+                  contentStyle={{ backgroundColor: "#111111", borderRadius: "8px", border: "none", color: "#f8fafc", fontSize: "11px", fontFamily: "monospace" }}
                   labelFormatter={(v) => `Time: ${v}s`}
                 />
                 <Legend wrapperStyle={{ fontSize: "10px" }} />

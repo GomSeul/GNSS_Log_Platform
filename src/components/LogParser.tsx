@@ -339,10 +339,10 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
       {/* Target Trial Title Card */}
       <div className="bg-slate-50 border border-slate-200/60 rounded-xl p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Settings className="h-9 w-9 text-indigo-500 bg-indigo-100/50 p-2 rounded-lg" />
+          <Settings className="h-9 w-9 text-hanwha-orange bg-hanwha-orange/10 p-2 rounded-lg" />
           <div>
             <h2 className="font-bold text-slate-800 text-sm">수신기 시험 로그 정합성 로더 및 파서</h2>
-            <p className="text-xs text-slate-500 mt-0.5">선택된 시험: <span className="font-mono text-indigo-600 font-bold">{selectedTrial.name}</span></p>
+            <p className="text-xs text-slate-500 mt-0.5">선택된 시험: <span className="font-mono text-hanwha-orange font-bold">{selectedTrial.name}</span></p>
           </div>
         </div>
         <div className="text-right text-xs font-mono">
@@ -364,7 +364,7 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all ${
                 dragActive
-                  ? "border-indigo-500 bg-indigo-50/20"
+                  ? "border-hanwha-orange bg-hanwha-orange/5"
                   : "border-slate-200 hover:border-slate-300 hover:bg-slate-50/30"
               }`}
             >
@@ -386,10 +386,10 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+            <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
                 <div className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-indigo-600" />
+                  <FileText className="h-5 w-5 text-hanwha-orange" />
                   <div>
                     <h4 className="font-bold text-slate-800 text-xs">{uploadedFiles[0].name}</h4>
                     <p className="text-[10px] text-slate-400 font-mono mt-0.5">파일 크기: {(uploadedFiles[0].size / 1024).toFixed(1)} KB</p>
@@ -414,7 +414,7 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
                 <div className="py-4 text-center">
                   <div className="text-xs text-slate-500 font-semibold mb-2">수신기 파일 바이너리/텍스트 인코딩 분석 중... {parsingProgress}%</div>
                   <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden max-w-md mx-auto">
-                    <div className="bg-indigo-600 h-full transition-all duration-300" style={{ width: `${parsingProgress}%` }} />
+                    <div className="bg-hanwha-orange h-full transition-all duration-300" style={{ width: `${parsingProgress}%` }} />
                   </div>
                 </div>
               )}
@@ -460,8 +460,8 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
 
           {/* Mapping Table Settings (Visible when file is parsed) */}
           {rawHeaders.length > 0 && (
-            <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-100">
+            <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-200">
                 <div>
                   <h4 className="font-bold text-slate-800 text-xs">수신기 컬럼 수동/자동 필드 맵핑</h4>
                   <p className="text-[10px] text-slate-400 mt-0.5">가장 적합한 로그 데이터 구조와 GRTIP 표준 필드를 매치하십시오.</p>
@@ -510,7 +510,7 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
               </div>
 
               {/* Save template option */}
-              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between">
                 {saveTemplateMode ? (
                   <div className="flex items-center gap-2 w-full max-w-md">
                     <input
@@ -518,18 +518,18 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
                       placeholder="템플릿 이름 입력 (예: OEM7 ASCII)"
                       value={customTemplateName}
                       onChange={(e) => setCustomTemplateName(e.target.value)}
-                      className="flex-1 bg-slate-50 border border-slate-200 rounded px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:bg-white"
+                      className="flex-1 bg-slate-50 border border-slate-200 rounded px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:bg-white focus:ring-1 focus:ring-hanwha-orange"
                     />
                     <button
                       onClick={handleSaveTemplate}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 text-xs rounded font-semibold flex items-center gap-1"
+                      className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-3 py-1.5 text-xs rounded font-semibold flex items-center gap-1 cursor-pointer"
                     >
                       <Save className="h-3 w-3" />
                       저장
                     </button>
                     <button
                       onClick={() => setSaveTemplateMode(false)}
-                      className="text-xs text-slate-400 hover:text-slate-600 px-2"
+                      className="text-xs text-slate-400 hover:text-slate-600 px-2 cursor-pointer"
                     >
                       취소
                     </button>
@@ -537,7 +537,7 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
                 ) : (
                   <button
                     onClick={() => setSaveTemplateMode(true)}
-                    className="text-xs text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1"
+                    className="text-xs text-hanwha-orange hover:text-hanwha-orange-dark font-semibold flex items-center gap-1 cursor-pointer"
                   >
                     <Save className="h-3.5 w-3.5" />
                     현재 컬럼 매핑 구조를 템플릿으로 저장
@@ -548,7 +548,7 @@ export default function LogParser({ selectedTrial, onAnalysisComplete }: LogPars
                 <button
                   onClick={runFullDataValidationAndAnalysis}
                   disabled={parseStatus === "validating"}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="bg-hanwha-orange hover:bg-hanwha-orange-dark text-white px-5 py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                   id="btn-run-analysis"
                 >
                   <Play className="h-4 w-4" />

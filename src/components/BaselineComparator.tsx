@@ -163,14 +163,14 @@ export default function BaselineComparator({
   return (
     <div className="space-y-6" id="grtip-baseline-comparator">
       {/* Target Baseline Selector Bar */}
-      <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <GitCompare className="h-5 w-5 text-indigo-600" />
+          <GitCompare className="h-5 w-5 text-hanwha-orange" />
           <span className="text-xs font-semibold text-slate-500 whitespace-nowrap">비교 대상 기준 시험선 (Baseline Selection):</span>
           <select
             value={selectedBaselineId}
             onChange={(e) => setSelectedBaselineId(e.target.value)}
-            className="bg-slate-50 border border-slate-200 rounded px-3 py-1.5 text-xs text-slate-700 font-semibold focus:outline-hidden"
+            className="bg-slate-50 border border-slate-200 rounded px-3 py-1.5 text-xs text-slate-700 font-semibold focus:outline-hidden focus:ring-1 focus:ring-hanwha-orange"
           >
             {baselineTrials.length === 0 ? (
               <option value="">-- 비교 가능한 타 시험 없음 --</option>
@@ -209,14 +209,14 @@ export default function BaselineComparator({
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Delta Metrics Table (Left 2/3) */}
           <div className="xl:col-span-2 space-y-6">
-            <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
+            <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
               <h3 className="font-bold text-slate-800 text-xs mb-1.5">핵심 성능 변화율 분석 (Delta Report Table)</h3>
               <p className="text-[10px] text-slate-400 mb-4">지정된 기준선 시험 대비 주요 위성항법 성능 지표의 절대적/상대적 변동량</p>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
-                    <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 font-medium">
+                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium">
                       <th className="p-3">성능 지표 항목</th>
                       <th className="p-3 font-mono">기준선 (Baseline)</th>
                       <th className="p-3 font-mono">현재 시험 (Current)</th>
@@ -226,7 +226,7 @@ export default function BaselineComparator({
                   </thead>
                   <tbody>
                     {deltaReport.map((row, idx) => (
-                      <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50/50 transition-all">
+                      <tr key={idx} className="border-b border-slate-200 hover:bg-slate-50/50 transition-all">
                         <td className="p-3">
                           <div className="font-semibold text-slate-800">{row.name}</div>
                           <div className="text-[10px] text-slate-400 mt-0.5">{row.desc}</div>
@@ -264,15 +264,15 @@ export default function BaselineComparator({
 
           {/* Overlay Graph (Right 1/3) */}
           <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
-              <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-2">
+            <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
+              <div className="flex items-center justify-between mb-4 border-b border-slate-200 pb-2">
                 <h4 className="text-xs font-bold text-slate-800">지표 중첩 비교 차이 분석 (Overlay Plot)</h4>
                 
                 {/* Metric selector */}
                 <select
                   value={overlayMetric}
                   onChange={(e) => setOverlayMetric(e.target.value as any)}
-                  className="bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5 text-[10px] text-slate-600 focus:outline-hidden font-semibold"
+                  className="bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5 text-[10px] text-slate-600 focus:outline-hidden font-semibold focus:ring-1 focus:ring-hanwha-orange"
                 >
                   <option value="cn0">신호세기 C/N₀ (PRN 12)</option>
                   <option value="positionErr">위치 정확도 해오차 (3D)</option>
@@ -287,17 +287,17 @@ export default function BaselineComparator({
                     <XAxis dataKey="timeSec" type="number" stroke="#94a3b8" fontSize={9} tickFormatter={(v) => `${v}s`} />
                     <YAxis stroke="#94a3b8" fontSize={9} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: "#1e293b", borderRadius: "6px", border: "none", color: "#f8fafc", fontSize: "10px", fontFamily: "monospace" }}
+                      contentStyle={{ backgroundColor: "#111111", borderRadius: "6px", border: "none", color: "#f8fafc", fontSize: "10px", fontFamily: "monospace" }}
                     />
                     <Legend wrapperStyle={{ fontSize: "10px" }} />
-                    <Line name="현재 시험 (Current Run)" type="monotone" dataKey="current" stroke="#4f46e5" strokeWidth={1.8} dot={false} />
+                    <Line name="현재 시험 (Current Run)" type="monotone" dataKey="current" stroke="#f37321" strokeWidth={1.8} dot={false} />
                     <Line name="기준 시험 (Baseline)" type="monotone" dataKey="baseline" stroke="#94a3b8" strokeWidth={1.5} strokeDasharray="3 3" dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
 
-              <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100 flex items-start gap-2">
-                <Layers className="h-4 w-4 text-indigo-500 shrink-0 mt-0.5" />
+              <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-start gap-2">
+                <Layers className="h-4 w-4 text-hanwha-orange shrink-0 mt-0.5" />
                 <p className="text-[10px] text-slate-500 leading-relaxed">
                   회색 점선(Baseline)과 청색 실선(Current)의 궤적을 겹쳐 비교하여 SW 알고리즘 수정 시점이나 특정 타임라인의 환경 저하를 시각적으로 빠르게 포착할 수 있습니다.
                 </p>

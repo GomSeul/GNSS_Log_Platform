@@ -161,21 +161,21 @@ export default function ReportGenerator({
             value={supervisorComments}
             onChange={(e) => setSupervisorComments(e.target.value)}
             placeholder="수신기 HW/SW 검토의견을 작성해 주세요. (예: SW v2.4.1 재밍 인가 구간의 루프 발산에 따른 Lock-Loss 1회 발생으로 설계 재검토 추천)"
-            className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700 focus:outline-hidden focus:bg-white focus:ring-1 focus:ring-indigo-500 leading-relaxed"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700 focus:outline-hidden focus:bg-white focus:ring-1 focus:ring-hanwha-orange leading-relaxed"
           />
         </div>
 
         {/* Mapped evidence overview (Evidence Linking) */}
-        <div className="bg-white rounded-xl shadow-xs border border-slate-100 p-5">
+        <div className="bg-white rounded-xl shadow-xs border border-slate-200 p-5">
           <h3 className="font-bold text-slate-800 text-sm mb-1.5">수신기 이상 검출 근거 연동 확인 (Evidence Linking)</h3>
           <p className="text-[10px] text-slate-400 mb-4">자동 룰 베이스에 의해 매치 및 추출된 이상 시그널 구간 및 로그 매핑 확인서</p>
 
           <div className="space-y-3">
             {anomalies.map((evt, idx) => (
-              <div key={idx} className="p-3 bg-slate-50 border border-slate-100 rounded-lg text-xs flex justify-between gap-4">
+              <div key={idx} className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs flex justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] font-bold text-indigo-600 bg-indigo-50 px-1.5 py-0.2 rounded">t={evt.timestamp}s</span>
+                    <span className="font-mono text-[10px] font-bold text-hanwha-orange bg-hanwha-orange/10 px-1.5 py-0.2 rounded">t={evt.timestamp}s</span>
                     <span className="font-semibold text-slate-700">{evt.prn === 999 ? "시스템 종합 위치해" : `위성 PRN ${evt.prn}`}</span>
                     <span className="text-[10px] text-slate-400">({evt.metricType.toUpperCase()})</span>
                   </div>
@@ -225,14 +225,14 @@ export default function ReportGenerator({
         </div>
 
         {/* AI Debug Copilot Panel */}
-        <div className="bg-slate-50 rounded-xl border border-indigo-100 p-5 space-y-4">
+        <div className="bg-slate-50 rounded-xl border border-slate-200 p-5 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
-              <Brain className="h-4.5 w-4.5 text-indigo-600 animate-pulse" />
+              <Brain className="h-4.5 w-4.5 text-hanwha-orange animate-pulse" />
               <span>GRTIP AI 디버깅 코파일럿</span>
             </h3>
-            <span className="bg-indigo-100 text-indigo-800 text-[9px] px-1.5 py-0.2 rounded font-bold font-mono">
-              GEMINI 3.5
+            <span className="bg-hanwha-orange/10 text-hanwha-orange text-[9px] px-1.5 py-0.2 rounded font-bold font-mono">
+              GEMINI 2.5
             </span>
           </div>
           
@@ -242,13 +242,13 @@ export default function ReportGenerator({
 
           {aiReport ? (
             <div className="space-y-3">
-              <div className="bg-white rounded-lg p-3 border border-indigo-100/40 text-xs text-slate-700 leading-relaxed font-sans max-h-[300px] overflow-y-auto whitespace-pre-wrap">
+              <div className="bg-white rounded-lg p-3 border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans max-h-[300px] overflow-y-auto whitespace-pre-wrap">
                 {aiReport}
               </div>
               <button
                 onClick={handleGenerateAiReport}
                 disabled={loadingAi}
-                className="w-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 py-1.5 text-xs font-semibold rounded-lg border border-indigo-100 flex items-center justify-center gap-1.5"
+                className="w-full bg-hanwha-orange/10 hover:bg-hanwha-orange/20 text-hanwha-orange py-1.5 text-xs font-semibold rounded-lg border border-hanwha-orange/20 flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <RefreshCw className={`h-3 w-3 ${loadingAi ? "animate-spin" : ""}`} />
                 AI 분석 의견 갱신
@@ -258,7 +258,7 @@ export default function ReportGenerator({
             <button
               onClick={handleGenerateAiReport}
               disabled={loadingAi}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+              className="w-full bg-hanwha-orange hover:bg-hanwha-orange-dark text-white py-2 text-xs font-semibold rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer"
               id="btn-run-ai-copilot"
             >
               {loadingAi ? (

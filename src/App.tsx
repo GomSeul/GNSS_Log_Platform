@@ -229,18 +229,18 @@ export default function App() {
   }, [baselineTrial]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased flex flex-col">
-      {/* 1. Header (Standard Aerospace Grade Aesthetic) */}
+    <div className="min-h-screen bg-hanwha-light-bg text-slate-800 font-sans antialiased flex flex-col">
+      {/* 1. Header (Hanwha Aerospace Corporate Tech Aesthetic) */}
       <header
-        className="bg-white border-b border-slate-200/80 px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 print:hidden"
+        className="bg-hanwha-black text-white border-b border-slate-800 px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 print:hidden"
         id="grtip-main-header"
       >
         <div className="flex items-center gap-3">
-          <FolderLock className="h-9 w-9 text-indigo-600 bg-indigo-50 p-2 rounded-xl border border-indigo-100" />
+          <FolderLock className="h-9 w-9 text-hanwha-orange bg-white/5 p-2 rounded-xl border border-white/10" />
           <div>
-            <h1 className="font-display font-bold text-slate-900 tracking-tight text-lg flex items-center gap-2">
+            <h1 className="font-display font-bold text-white tracking-tight text-lg flex items-center gap-2">
               <span>위성항법 수신기 시험 로그 지능형 분석 플랫폼</span>
-              <span className="text-[10px] bg-indigo-100/70 text-indigo-800 px-2 py-0.5 rounded font-mono font-bold uppercase tracking-wider">
+              <span className="text-[10px] bg-hanwha-orange text-white px-2 py-0.5 rounded font-mono font-bold uppercase tracking-wider">
                 GRTIP v1.0
               </span>
             </h1>
@@ -251,9 +251,9 @@ export default function App() {
         </div>
 
         {/* System Online Badge */}
-        <div className="flex items-center gap-3 self-stretch md:self-auto justify-between md:justify-start border-t md:border-t-0 pt-3 md:pt-0 border-slate-100">
-          <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="flex items-center gap-3 self-stretch md:self-auto justify-between md:justify-start border-t md:border-t-0 pt-3 md:pt-0 border-slate-800">
+          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
+            <span className="h-2 w-2 rounded-full bg-hanwha-orange animate-pulse" />
             <span>LOCAL SECURE RUNTIME</span>
           </div>
         </div>
@@ -261,11 +261,13 @@ export default function App() {
 
       {/* 2. Platform Navigation Panel */}
       {selectedProject && (
-        <nav className="bg-white border-b border-slate-100 px-6 py-2 flex gap-1 overflow-x-auto print:hidden" id="grtip-main-nav">
+        <nav className="bg-white border-b border-slate-200 px-6 py-2.5 flex gap-1.5 overflow-x-auto print:hidden" id="grtip-main-nav">
           <button
             onClick={() => setActiveTab("projects")}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              activeTab === "projects" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              activeTab === "projects"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
             }`}
           >
             <Cpu className="h-4 w-4" />
@@ -277,9 +279,13 @@ export default function App() {
               if (selectedTrial) setActiveTab("parser");
             }}
             disabled={!selectedTrial}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              !selectedTrial ? "opacity-40 cursor-not-allowed" : ""
-            } ${activeTab === "parser" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              !selectedTrial ? "opacity-30 cursor-not-allowed" : ""
+            } ${
+              activeTab === "parser"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
+            }`}
           >
             <Terminal className="h-4 w-4" />
             <span>로그 파서 & 매퍼</span>
@@ -290,9 +296,13 @@ export default function App() {
               if (currentLogs.length > 0) setActiveTab("analyzer");
             }}
             disabled={currentLogs.length === 0}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              currentLogs.length === 0 ? "opacity-40 cursor-not-allowed" : ""
-            } ${activeTab === "analyzer" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              currentLogs.length === 0 ? "opacity-30 cursor-not-allowed" : ""
+            } ${
+              activeTab === "analyzer"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
+            }`}
           >
             <Activity className="h-4 w-4" />
             <span>수신기 정밀 성능 분석기</span>
@@ -303,9 +313,13 @@ export default function App() {
               if (currentLogs.length > 0) setActiveTab("detector");
             }}
             disabled={currentLogs.length === 0}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              currentLogs.length === 0 ? "opacity-40 cursor-not-allowed" : ""
-            } ${activeTab === "detector" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              currentLogs.length === 0 ? "opacity-30 cursor-not-allowed" : ""
+            } ${
+              activeTab === "detector"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
+            }`}
           >
             <AlertTriangle className="h-4 w-4" />
             <span>이상구간 탐지기</span>
@@ -316,9 +330,13 @@ export default function App() {
               if (currentLogs.length > 0) setActiveTab("comparator");
             }}
             disabled={currentLogs.length === 0}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              currentLogs.length === 0 ? "opacity-40 cursor-not-allowed" : ""
-            } ${activeTab === "comparator" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              currentLogs.length === 0 ? "opacity-30 cursor-not-allowed" : ""
+            } ${
+              activeTab === "comparator"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
+            }`}
           >
             <GitCompare className="h-4 w-4" />
             <span>기준선 비교 분석기</span>
@@ -329,9 +347,13 @@ export default function App() {
               if (currentLogs.length > 0) setActiveTab("report");
             }}
             disabled={currentLogs.length === 0}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
-              currentLogs.length === 0 ? "opacity-40 cursor-not-allowed" : ""
-            } ${activeTab === "report" ? "bg-slate-100 text-indigo-600" : "hover:bg-slate-50 text-slate-600"}`}
+            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap border ${
+              currentLogs.length === 0 ? "opacity-30 cursor-not-allowed" : ""
+            } ${
+              activeTab === "report"
+                ? "bg-hanwha-black text-white border-hanwha-black"
+                : "hover:bg-slate-50 text-slate-600 hover:text-hanwha-orange border-transparent"
+            }`}
           >
             <FileCheck className="h-4 w-4" />
             <span>검증 성적서 & AI 소견</span>
@@ -445,12 +467,16 @@ export default function App() {
       </main>
 
       {/* 4. Footer (Aerospace Branding Credit lines) */}
-      <footer className="bg-white border-t border-slate-200/80 py-4 px-6 text-center text-slate-400 text-[10px] print:hidden">
-        <div>
-          위성항법 수신기 시험 로그 지능형 분석 플랫폼 (GRTIP) • 국가 위성항법 검증 규격 준수
-        </div>
-        <div className="mt-1 font-mono">
-          AEROSPACE VALIDATION SECURE RUNTIME 환경 • ythwang.cas@gmail.com
+      <footer className="bg-hanwha-black text-slate-500 border-t border-slate-800 py-6 px-6 text-center text-[10px] print:hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-2">
+            <span className="font-bold text-slate-300">Hanwha Aerospace Co., Ltd.</span>
+            <span className="hidden md:inline">•</span>
+            <span>위성항법 수신기 시험 로그 지능형 분석 플랫폼 (GRTIP)</span>
+          </div>
+          <div className="font-mono text-slate-500">
+            AEROSPACE VALIDATION SECURE RUNTIME • VERIFIED FOR DEFENSE STANDARDS
+          </div>
         </div>
       </footer>
     </div>

@@ -5,6 +5,35 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: "Space Grotesk", sans-serif;
+
+  --color-hanwha-orange: #f37321;
+  --color-hanwha-orange-dark: #d65b0f;
+  --color-hanwha-orange-light: #fff2e8;
+  --color-hanwha-black: #111111;
+  --color-hanwha-charcoal: #19191b;
+  --color-hanwha-dark-gray: #2d2d31;
+  --color-hanwha-light-bg: #f5f6f8;
+}
+
+/* Custom styles for high-tech Hanwha Aerospace look */
+body {
+  background-color: #f5f6f8;
+}
+
+/* Scrollbar customization matching modern web UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* Print CSS formatting rules to ensure aerospace reports break nicely */
